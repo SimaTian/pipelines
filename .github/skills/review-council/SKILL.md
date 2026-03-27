@@ -39,6 +39,7 @@ Are the goals met? Cross-reference every claim in the PR description, linked iss
 - **Orphan claims**: stated in PR/issue but no corresponding code change
 - **Orphan changes**: code changed but not mentioned in any claim
 - **Partial implementations**: claim says X, code does X-minus-something
+- **Incomplete refactoring**: when code is refactored to accept injected dependencies (delegates, interfaces, abstractions), verify that all internal code paths actually use the injection. Flag methods that still call the old static/global API alongside the new injected one — this defeats the refactoring while appearing correct at the API surface.
 
 **Before flagging**, apply these gates:
 - **Execution context**: understand how and where the code runs before judging. Test harnesses, standalone projects, and production code have different constraints.
